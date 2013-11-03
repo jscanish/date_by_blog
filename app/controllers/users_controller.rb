@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "You've been registered!"
+      redirect_to home_path, notice: "You've been registered!"
     else
       render :new
     end
