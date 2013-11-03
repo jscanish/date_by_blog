@@ -8,6 +8,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '= 3.0.1'
+gem 'fabrication'
+gem 'faker'
 
 group :doc do
   gem 'sdoc', require: false
@@ -17,6 +19,14 @@ group :development do
   gem 'quiet_assets'
   gem 'pry'
   gem 'sqlite3'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
 end
 
 group :production do
