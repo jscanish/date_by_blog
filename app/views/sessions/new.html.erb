@@ -1,0 +1,11 @@
+<%= render 'shared/header', message: "Login" %>
+
+<%= form_tag '/login', method: :post do %>
+  <%= label_tag :username, "Username" %>
+  <%= text_field_tag :username %>
+  <%= label_tag :password, "Password" %>
+  <%= password_field_tag :password %>
+  <br/>
+  <button class="btn btn-primary">Login</button>
+
+<% end %>
