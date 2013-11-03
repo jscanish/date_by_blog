@@ -4,7 +4,7 @@ PostitTemplate::Application.routes.draw do
   get "/logout", to: 'sessions#destroy'
 
   get "/register", to: 'users#new'
-  resources :users, only: [:index, :new, :create]
+  resources :users, only: [:index, :new, :create, :show]
 
   root to: 'users#index'
 end
