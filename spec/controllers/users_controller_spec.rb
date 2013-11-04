@@ -54,8 +54,7 @@ describe UsersController do
 
   describe "GET show" do
     it "sets the @user variable" do
-      user = Fabricate(:user)
-      session[:user_id] = user.id
+      set_current_user
       user_2 = Fabricate(:user, username: "Josh")
       get :show, id: user_2.id
       expect(assigns(:user)).to eq(user_2)
