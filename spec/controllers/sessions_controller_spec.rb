@@ -30,9 +30,6 @@ describe SessionsController do
       it "puts the user in the session" do
         expect(session[:user_id]).to eq(@user.id)
       end
-      it "sets flash message" do
-        expect(flash[:notice]).to_not be_blank
-      end
       it "redirects to root_path" do
         expect(response).to redirect_to root_path
       end

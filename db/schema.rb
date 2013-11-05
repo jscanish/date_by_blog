@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104014451) do
+ActiveRecord::Schema.define(version: 20131105053825) do
+
+  create_table "questions", force: true do |t|
+    t.integer  "user_id"
+    t.text     "self_summary"
+    t.text     "life_story"
+    t.text     "favorite_things"
+    t.text     "looking_for"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"

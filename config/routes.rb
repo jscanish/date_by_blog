@@ -5,7 +5,8 @@ PostitTemplate::Application.routes.draw do
 
   get "/home", to: 'users#index'
   get "/register", to: 'users#new'
-  resources :users, only: [:index, :new, :create, :show]
-
+  resources :users, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :questions, only: [:edit, :update]
+  end
   root to: 'pages#front'
 end

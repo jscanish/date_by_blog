@@ -9,5 +9,7 @@
   <%= f.email_field :email %>
   <%= f.label :password, "Password" %>
   <%= f.password_field :password %>
+  <%= f.label :gender, "Gender (we use this for matching)" %>
+  <%= f.select :gender, options_for_select(["Male", "Female"])  %>
   <div><input type="submit" class="btn btn-primary" value="Create A New User" ></div>
 <% end %>

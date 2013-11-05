@@ -1,1 +1,27 @@
 <%= render 'shared/header', message: "#{@user.username}'s Profile" %>
+
+<div class='well'>
+  <h4>Self Summary</h4>
+  <%= @user.set_of_questions.self_summary %>
+</div>
+
+<div class='well'>
+  <h4>Life Story</h4>
+  <%= @user.set_of_questions.life_story %>
+</div>
+
+<div class='well'>
+  <h4>Favorite Things</h4>
+  <%= @user.set_of_questions.favorite_things %>
+</div>
+
+<div class='well'>
+  <h4>Looking For</h4>
+  <%= @user.set_of_questions.looking_for %>
+</div>
+
+
+
+<% if current_user == @user %>
+  <%= button_to "Answer Questions!", edit_user_path(@user), method: :get, class: 'btn' %>
+<% end %>

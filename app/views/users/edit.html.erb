@@ -1,0 +1,14 @@
+<%= render 'shared/header', message: "#{@user.username}'s Profile" %>
+
+<%= form_for [@user, @questions], method: :post do |f| %>
+  <%= f.label :self_summary, "Self Summary" %>
+  <%= f.text_area :self_summary %>
+  <%= f.label :life_story, "Life Story" %>
+  <%= f.text_area :life_story %>
+  <%= f.label :favorite_things, "Favorite Things" %>
+  <%= f.text_area :favorite_things %>
+  <%= f.label :looking_for, "Looking For" %>
+  <%= f.text_area :looking_for %>
+  <hr/>
+  <%= button_to "Submit", user_path(@user), method: :patch %>
+<% end %>

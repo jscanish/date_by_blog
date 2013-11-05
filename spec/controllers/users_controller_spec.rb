@@ -38,6 +38,10 @@ describe UsersController do
         post :create, user: Fabricate.to_params(:user)
         expect(flash[:notice]).to_not be_blank
       end
+      it "creates questions for user" do
+        post :create, user: Fabricate.to_params(:user)
+        expect(Question.first.user).to eq(User.first)
+      end
     end
 
     context "with invalid input" do

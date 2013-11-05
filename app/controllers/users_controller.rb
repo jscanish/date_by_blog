@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user, only: [:index, :show]
+  before_action :set_user, only: [:edit]
+  before_action :require_creator, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -13,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      Question.create(user: @user)
       session[:user_id] = @user.id
       redirect_to home_path, notice: "You've been registered!"
     else
@@ -24,10 +27,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @questions = @user.set_of_questions
+  end
+
+  def update; end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :gender)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_creator
+    redirect_to home_path unless logged_in? && @user == current_user
   end
 end
