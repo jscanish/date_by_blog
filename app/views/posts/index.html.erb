@@ -1,0 +1,20 @@
+<%= render 'shared/header', message: "#{@user.username}'s Blog" %>
+
+<% if @user.posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+        <li class='list_space'>
+          <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
+          <%= post.body %>
+          <br/>
+          <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+        </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<% if current_user == @user %>
+  <%= link_to "New Post", new_user_post_path %>
+<% end %>
+

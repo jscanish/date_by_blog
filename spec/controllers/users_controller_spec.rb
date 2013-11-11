@@ -13,7 +13,7 @@ describe UsersController do
       user1 = Fabricate(:user)
       user2 = Fabricate(:user)
       get :index
-      expect(response).to redirect_to root_path
+      expect(response).to redirect_to login_path
     end
   end
 

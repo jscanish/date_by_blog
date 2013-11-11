@@ -7,6 +7,9 @@ PostitTemplate::Application.routes.draw do
   get "/register", to: 'users#new'
   resources :users, only: [:index, :new, :create, :show, :edit, :update] do
     resources :questions, only: [:edit, :update]
+    resources :posts
   end
+
+
   root to: 'pages#front'
 end

@@ -20,7 +20,7 @@
   <%= @user.set_of_questions.looking_for %>
 </div>
 
-
+<h4><%= link_to "See #{@user.username}'s Blog", user_posts_path(@user, @posts) %></h4>
 
 <% if current_user == @user %>
   <%= button_to "Answer Questions!", edit_user_path(@user), method: :get, class: 'btn' %>
