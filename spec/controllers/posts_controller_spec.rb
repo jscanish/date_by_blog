@@ -43,4 +43,23 @@ describe PostsController do
       expect(response).to redirect_to login_path
     end
   end
+
+  describe "GET new" do
+    before do
+      @user = Fabricate(:user)
+      session[:user_id] = @user.id
+      get :new, user_id: @user.id
+    end
+    it "requires logged in user" do
+      session[:user_id] = nil
+      get :new, user_id: @user.id
+      expect(response).to redirect_to login_path
+    end
+    it "sets @user variable" do
+      expect(assigns(:user)).to eq(@user)
+    end
+    it "sets @post variable" do
+      expect(assigns(:post)).to be_instance_of(Post)
+    end
+  end
 end
