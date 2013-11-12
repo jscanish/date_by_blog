@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user
-  before_action :require_creator, only: [:new]
+  before_action :require_creator, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -26,6 +26,34 @@ class PostsController < ApplicationController
       redirect_to user_posts_path(@user)
     else
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+
+    if @post.update(post_params)
+      flash[:notice] = "Post Updated!"
+      redirect_to user_posts_path(@user, @post)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:id])
+
+    if current_user == @post.user
+      @post.delete
+      flash[:notice] = "Post Deleted"
+      redirect_to user_posts_path(@user)
     end
   end
 

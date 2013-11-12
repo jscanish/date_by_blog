@@ -2,6 +2,11 @@
   <li>
     <%= link_to "Date by Blog!", root_path, :class => 'brand' %>
   </li>
+  <% if logged_in? %>
+    <li>
+      <%= link_to "Profile", user_path(current_user) %>
+    </li>
+  <% end %>
 </ul>
 <ul class='nav pull_right'>
   <% if logged_in? %>

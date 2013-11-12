@@ -1,7 +1,21 @@
-<%= render 'shared/header', message: "#{@post.title}" %>
+<%= render 'shared/header', message: "#{@post.title}", link: false, path: false %>
 
 <div>
   <p>
     <%= @post.body %>
   </p>
+</div>
+
+<br/>
+
+<div>
+  <% if current_user == @post.user %>
+  <%= link_to "Edit This Post", edit_user_post_path(@user, @post) %>
+  <% end %>
+</div>
+
+<div>
+  <% if current_user == @post.user %>
+  <%= link_to "Delete This Post", user_post_path(@user, @post), method: :delete %>
+  <% end %>
 </div>

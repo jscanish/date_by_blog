@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @user %>
 
-<%= render 'shared/header', message: "Register A New User" %>
+<%= render 'shared/header', message: "Register A New User", link: false, path: false %>
 
 <%= form_for @user do |f| %>
   <%= f.label :username, "Username" %>

@@ -1,4 +1,4 @@
-<%= render 'shared/header', message: "#{@user.username}'s Profile" %>
+<%= render 'shared/header', message: "#{@user.username}'s Profile", link: false, path: false %>
 
 <%= form_for [@user, @questions], method: :post do |f| %>
   <%= f.label :self_summary, "Self Summary" %>

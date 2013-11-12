@@ -1,4 +1,4 @@
-<%= render 'shared/header', message: "Login" %>
+<%= render 'shared/header', message: "Login", link: false, path: false %>
 
 <%= form_tag '/login', method: :post do %>
   <%= label_tag :username, "Username" %>

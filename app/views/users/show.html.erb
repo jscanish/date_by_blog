@@ -1,4 +1,4 @@
-<%= render 'shared/header', message: "#{@user.username}'s Profile" %>
+<%= render 'shared/header', message: "#{@user.username}'s Profile", link: "See #{@user.username}'s Blog", path: user_posts_path(@user, @posts) %>
 
 <div class='well'>
   <h4>Self Summary</h4>
@@ -19,8 +19,6 @@
   <h4>Looking For</h4>
   <%= @user.set_of_questions.looking_for %>
 </div>
-
-<h4><%= link_to "See #{@user.username}'s Blog", user_posts_path(@user, @posts) %></h4>
 
 <% if current_user == @user %>
   <%= button_to "Answer Questions!", edit_user_path(@user), method: :get, class: 'btn' %>
