@@ -5,7 +5,7 @@
     <% @posts.each do |post| %>
         <li class='list_space'>
           <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
-          <%= post.body %>
+          <%= truncate(post.body, :length => 1500, :separator => ' ') %>
           <br/>
           <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
         </li>

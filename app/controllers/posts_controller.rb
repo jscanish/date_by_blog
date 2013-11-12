@@ -17,8 +17,23 @@ class PostsController < ApplicationController
     @post = @user.posts.new
   end
 
+  def create
+    @user = User.find(params[:user_id])
+    @post = @user.posts.new(post_params)
+
+    if @post.save
+      flash[:notice] = "Post Created!"
+      redirect_to user_posts_path(@user)
+    else
+      render :new
+    end
+  end
 
   private
+
+  def post_params
+    params.require(:post).permit(:body, :title)
+  end
 
   def require_creator
     redirect_to home_path unless logged_in? && current_user == User.find(params[:user_id])

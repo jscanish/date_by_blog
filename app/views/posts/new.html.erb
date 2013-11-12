@@ -1,0 +1,11 @@
+<%= render 'shared/errors', obj: @post %>
+<%= render 'shared/header', message: "Create a New Post" %>
+
+<%= form_for [@user, @post] do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+  <%= f.label :body, "Content" %>
+  <%= f.text_area :body, rows: 14 %>
+  <br/>
+  <%= button_to "Submit", user_posts_path(@user, @post), method: :post, class: 'btn' %>
+<% end %>
