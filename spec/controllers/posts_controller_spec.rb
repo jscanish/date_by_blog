@@ -108,4 +108,84 @@ describe PostsController do
       expect(assigns(:post)).to eq(@post)
     end
   end
+
+  describe "PUT update" do
+    before do
+      @user = Fabricate(:user)
+      session[:user_id] = @user.id
+      @post = Post.create(user: @user, title: "hi", body: "hi there")
+    end
+    it "requires logged in user" do
+      session[:user_id] = nil
+      @attr = { title: "new title" }
+      put :update, user_id: @user.id, id: @post.id, post: @attr
+      expect(response).to redirect_to login_path
+    end
+
+    context "with valid inputs" do
+      it "updates the post" do
+        @attr = { title: "new title" }
+        put :update, user_id: @user.id, id: @post.id, post: @attr
+        @post.reload
+        expect(@post.title).to eq("new title")
+      end
+      it "sets the flash message" do
+        @attr = { title: "new title" }
+        put :update, user_id: @user.id, id: @post.id, post: @attr
+        @post.reload
+        expect(flash[:notice]).to_not be_blank
+      end
+      it "redirects to the user posts path" do
+        @attr = { title: "new title" }
+        put :update, user_id: @user.id, id: @post.id, post: @attr
+        @post.reload
+        expect(response).to redirect_to user_posts_path(@user, @post)
+      end
+    end
+
+    context "with invalid inputs" do
+      it "does not update the post" do
+        @attr = { title: nil }
+        put :update, user_id: @user.id, id: @post.id, post: @attr
+        @post.reload
+        expect(@post.title).to eq("hi")
+      end
+      it "renders the edit page" do
+        @attr = { title: nil }
+        put :update, user_id: @user.id, id: @post.id, post: @attr
+        @post.reload
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe "DELETE destroy" do
+    before do
+      @user = Fabricate(:user)
+      session[:user_id] = @user.id
+      @post = Fabricate(:post, user: @user)
+    end
+    it "requires logged in user" do
+      session[:user_id] = nil
+      delete :destroy, user_id: @user.id, id: @post.id
+      expect(response).to redirect_to login_path
+    end
+    it "does not delete post if current user is not post creator" do
+      user2 = Fabricate(:user)
+      delete :destroy, user_id: user2.id, id: @post.id
+      expect(response).to redirect_to home_path
+    end
+    it "deletes post if current user is post creator" do
+      delete :destroy, user_id: @user.id, id: @post.id
+      expect(@user.posts.count).to eq(0)
+    end
+    it "sets the flash message" do
+      delete :destroy, user_id: @user.id, id: @post.id
+      expect(flash[:notice]).to_not be_blank
+    end
+    it "redirects to user posts path" do
+      delete :destroy, user_id: @user.id, id: @post.id
+      expect(response).to redirect_to user_posts_path(@user)
+    end
+  end
 end
