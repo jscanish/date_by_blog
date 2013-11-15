@@ -11,5 +11,7 @@
   <%= f.password_field :password %>
   <%= f.label :gender, "Gender (we use this for matching)" %>
   <%= f.select :gender, options_for_select(["Male", "Female"])  %>
+  <%= f.label :address, "Address" %>
+  <%= f.text_field :address %>
   <div><input type="submit" class="btn btn-primary" value="Create A New User" ></div>
 <% end %>

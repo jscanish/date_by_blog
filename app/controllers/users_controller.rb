@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:index, :show]
+  before_action :require_user, only: [:index, :show, :edit, :update, :search]
   before_action :set_user, only: [:edit]
   before_action :require_creator, only: [:edit, :update]
 
@@ -7,9 +7,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+
   def new
     @user = User.new
   end
+
 
   def create
     @user = User.new(user_params)
@@ -23,21 +25,33 @@ class UsersController < ApplicationController
     end
   end
 
+
   def show
     @user = User.find(params[:id])
   end
+
 
   def edit
     @questions = @user.set_of_questions
   end
 
+
   def update; end
 
+
+  def search
+    @users = nearby_matches
+  end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :gender)
+    params.require(:user).permit(:username, :email, :password, :gender, :address)
+  end
+
+  def nearby_matches
+    users = User.near([current_user.latitude, current_user.longitude], 30)
+    users.select { |user| user.gender != current_user.gender }
   end
 
   def set_user

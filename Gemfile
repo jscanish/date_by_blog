@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '= 3.0.1'
 gem 'fabrication'
 gem 'faker'
+gem 'geocoder'
 
 group :doc do
   gem 'sdoc', require: false

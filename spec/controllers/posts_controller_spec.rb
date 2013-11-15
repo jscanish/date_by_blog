@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PostsController do
   describe "GET index" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: "Coatesville, Pennsylvania")
       session[:user_id] = @user.id
     end
     it "sets @user variable" do
@@ -25,7 +25,7 @@ describe PostsController do
 
   describe "GET show" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: "Coatesville, Pennsylvania")
       session[:user_id] = @user.id
       @post = Post.create(user: @user, title: "hi", body: "hello")
     end
@@ -46,7 +46,7 @@ describe PostsController do
 
   describe "GET new" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: 'Coatesville, Pennsylvania')
       session[:user_id] = @user.id
       get :new, user_id: @user.id
     end
@@ -65,13 +65,12 @@ describe PostsController do
 
   describe "POST create" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: 'Coatesville, Pennsylvania')
       session[:user_id] = @user.id
     end
     it "requires logged in user" do
       session[:user_id] = nil
-      user = Fabricate(:user)
-      post :create, user_id: user.id, post: Fabricate.to_params(:post)
+      post :create, user_id: @user.id, post: Fabricate.to_params(:post)
       expect(response).to redirect_to login_path
     end
     it "sets the @user variable" do
@@ -90,7 +89,7 @@ describe PostsController do
 
   describe "GET edit" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: "Coatesville, Pennsylvania")
       session[:user_id] = @user.id
       @post = Post.create(user: @user, title: "hi", body: "hi there")
     end
@@ -111,7 +110,7 @@ describe PostsController do
 
   describe "PUT update" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: 'Coatesville, Pennsylvania')
       session[:user_id] = @user.id
       @post = Post.create(user: @user, title: "hi", body: "hi there")
     end
@@ -161,7 +160,7 @@ describe PostsController do
 
   describe "DELETE destroy" do
     before do
-      @user = Fabricate(:user)
+      @user = Fabricate(:user, address: 'Coatesville, Pennsylvania')
       session[:user_id] = @user.id
       @post = Fabricate(:post, user: @user)
     end
@@ -171,7 +170,7 @@ describe PostsController do
       expect(response).to redirect_to login_path
     end
     it "does not delete post if current user is not post creator" do
-      user2 = Fabricate(:user)
+      user2 = Fabricate(:user, address: 'Coatesville, Pennsylvania')
       delete :destroy, user_id: user2.id, id: @post.id
       expect(response).to redirect_to home_path
     end
