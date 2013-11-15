@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe UsersController do
+  before(:each) do
+    User.any_instance.stub(:geocode).and_return([1,1])
+  end
+
   describe "GET index" do
     it "sets @users variable" do
       user1 = Fabricate(:user)

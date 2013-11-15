@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe SessionsController do
+  before(:each) do
+    User.any_instance.stub(:geocode).and_return([1,1])
+  end
+
   describe "GET new" do
     it "redirects to new path if user is logged in" do
       set_current_user
@@ -24,7 +28,7 @@ describe SessionsController do
   describe "POST create" do
     context "with valid input" do
       before do
-        @user = Fabricate(:user)
+        @user = Fabricate(:user, address: "New York")
         post :create, username: @user.username, password: @user.password
       end
       it "puts the user in the session" do
@@ -37,7 +41,7 @@ describe SessionsController do
 
     context "with invalid input" do
       before do
-        @user = Fabricate(:user)
+        @user = Fabricate(:user, address: "New York")
         post :create, username: @user.username, password: @user.password + "abcd"
       end
       it "should not put the user in the session" do

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 
 describe QuestionsController do
+  before(:each) do
+    User.any_instance.stub(:geocode).and_return([1,1])
+  end
+
   describe "PUT update" do
     it "updates user's questions if user is current user" do
       user = Fabricate(:user)

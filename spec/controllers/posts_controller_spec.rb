@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe PostsController do
+  before(:each) do
+    User.any_instance.stub(:geocode).and_return([1,1])
+  end
   describe "GET index" do
     before do
-      @user = Fabricate(:user, address: "Coatesville, Pennsylvania")
+      @user = Fabricate(:user, address: "New York")
       session[:user_id] = @user.id
     end
     it "sets @user variable" do
