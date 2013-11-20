@@ -36,12 +36,13 @@ class UsersController < ApplicationController
   end
 
 
-  def update; end
-
-
   def search
     @users = nearby_matches
   end
+
+
+  def update; end
+
 
   private
 
