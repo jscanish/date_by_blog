@@ -11,7 +11,9 @@ PostitTemplate::Application.routes.draw do
       post "search", to: "users#search"
     end
     resources :questions, only: [:edit, :update]
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
   end
 
   root to: 'pages#front'

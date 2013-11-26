@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :set_of_questions, class_name: "Question"
+  has_many :comments
   has_many :posts, -> {order('created_at DESC')}
   validates :password, presence: true, length: {minimum: 4}
   validates :username, presence: true, uniqueness: true
