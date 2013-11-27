@@ -13,5 +13,7 @@
   <%= f.select :gender, options_for_select(["Male", "Female"])  %>
   <%= f.label :address, "Address" %>
   <%= f.text_field :address %>
+  <%= f.label :age, "Age" %>
+  <%= f.select :age, options_for_select(18..45) %>
   <div><input type="submit" class="btn btn-primary" value="Create A New User" ></div>
 <% end %>

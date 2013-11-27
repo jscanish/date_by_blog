@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 4}
   validates :username, presence: true, uniqueness: true
   validates :address, presence: true
+  validates_presence_of :age
   validates_presence_of :email
   geocoded_by :address
 

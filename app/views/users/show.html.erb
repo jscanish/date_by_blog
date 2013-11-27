@@ -1,6 +1,6 @@
 <%= render 'shared/header', message: "#{@user.username}'s Profile", link: "See #{@user.username}'s Blog", path: user_posts_path(@user, @posts) %>
 
-<div><h4><%= @user.gender %> / <%= @user.address %></h4></div>
+<div><h4><%= @user.gender %> / <%= @user.age %> / <%= @user.address %></h4></div>
 <br/>
 
 <div class='well'>

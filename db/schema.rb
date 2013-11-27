@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126034855) do
+ActiveRecord::Schema.define(version: 20131127232441) do
 
   create_table "comments", force: true do |t|
     t.string   "body"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20131126034855) do
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "age"
   end
 
 end
