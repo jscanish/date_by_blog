@@ -35,13 +35,14 @@ class UsersController < ApplicationController
     @questions = @user.set_of_questions
   end
 
+  def update; end
 
-  def search
-    @users = nearby_matches
+  def search; end
+
+  def search_results
+    @users = results
   end
 
-
-  def update; end
 
 
   private
@@ -50,9 +51,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password, :gender, :address, :age)
   end
 
-  def nearby_matches
-    users = User.near([current_user.latitude, current_user.longitude], 30)
-    users.select { |user| user.gender != current_user.gender }
+  def results
+    params[:distance] == "All" ? distance = User.all : distance = User.near([current_user.latitude, current_user.longitude], params[:distance])
+
+    params[:gender] == "Both" ? distance_gender = distance : distance_gender = distance.select{|user| user.gender == params[:gender]}
+
+    distance_gender_age = distance_gender.select{ |user| user.age <= params[:max_age].to_i && user.age >= params[:min_age].to_i }
+
+    distance_gender_age.delete(current_user)
+    distance_gender_age
   end
 
   def set_user

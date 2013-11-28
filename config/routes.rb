@@ -8,7 +8,8 @@ PostitTemplate::Application.routes.draw do
   get "/register", to: 'users#new'
   resources :users, only: [:index, :new, :create, :show, :edit, :update] do
     collection do
-      post "search", to: "users#search"
+      get "search", to: "users#search"
+      post "search_results", to: "users#search_results"
     end
     resources :questions, only: [:edit, :update]
     resources :posts do

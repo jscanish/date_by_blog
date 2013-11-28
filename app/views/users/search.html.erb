@@ -1,11 +1,18 @@
-<%= render 'shared/header', message: "Search Results", link: false, path: false %>
+<%= render 'shared/header', message: "Search For Dates!", link: false, path: false %>
 
-<% if @users.blank? %>
-  <p>No Matches</p>
-<% else %>
-  <ul>
-    <% @users.each do |user| %>
-      <li><h4><%= link_to user.username, user_path(user) %></h4></li>
-    <% end %>
-  </ul>
+<%= form_tag '/users/search_results' do %>
+  <p>Find users who are:</p>
+  <%= select_tag 'gender', "<option>Female</option>, <option>Male</option>, <option>Both</option>".html_safe, class: 'span2' %>
+  <p>Who live within </p>
+  <%= select_tag 'distance', "<option>10</option>, <option>30</option>, <option>50</option>, <option>100</option>, <option>All</option>".html_safe, class: 'span1' %> miles
+  <p>And between the ages of <%= select_tag 'min_age', options_for_select((18..50)), class: 'span1' %> and <%= select_tag 'max_age', options_for_select((18..50)), class: 'span1' %></p>
+  <%= button_to "Search", search_results_users_path, class: 'btn' %>
 <% end %>
+
+
+
+
+
+
+
+
