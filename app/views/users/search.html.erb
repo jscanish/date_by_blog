@@ -1,12 +1,22 @@
 <%= render 'shared/header', message: "Search For Dates!", link: false, path: false %>
 
+
 <%= form_tag '/users/search_results' do %>
-  <p>Find users who are:</p>
-  <%= select_tag 'gender', "<option>Female</option>, <option>Male</option>, <option>Both</option>".html_safe, class: 'span2' %>
-  <p>Who live within </p>
-  <%= select_tag 'distance', "<option>10</option>, <option>30</option>, <option>50</option>, <option>100</option>, <option>All</option>".html_safe, class: 'span1' %> miles
-  <p>And between the ages of <%= select_tag 'min_age', options_for_select((18..50)), class: 'span1' %> and <%= select_tag 'max_age', options_for_select((18..50)), class: 'span1' %></p>
-  <%= button_to "Search", search_results_users_path, class: 'btn' %>
+  <div class='well'>
+    <p>Find users who are:</p>
+      <%= select_tag 'gender', "<option>Female</option>, <option>Male</option>, <option>Both</option>".html_safe, class: 'span2' %>
+  </div>
+
+  <div class='well'>
+    <p>Who live within </p>
+      <%= select_tag 'distance', "<option>10</option>, <option>30</option>, <option>50</option>, <option>100</option>, <option>All</option>".html_safe, class: 'span1' %> miles
+  </div>
+
+  <div class='well'>
+    <p>And are between the ages of <%= select_tag 'min_age', options_for_select((18..50)), class: 'span1' %> and <%= select_tag 'max_age', options_for_select((18..50)), class: 'span1' %></p>
+  </div>
+
+  <%= button_to "Search", search_results_users_path, class: 'btn btn-primary' %>
 <% end %>
 
 
