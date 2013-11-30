@@ -1,0 +1,14 @@
+<%= render 'shared/header', message: "#{current_user.username}'s Sent Messages", link: false, path: false %>
+
+<% if @messages.blank? %>
+  <h4>No Messages</h4>
+<% else %>
+  <% @messages.each do |message| %>
+    <div class='well', id="no_padding">
+      <h4><%= message.title %></h4>
+      <%= message.body %>
+      <br/>
+      <h5>To <%= link_to message.receiver.username, user_path(message.receiver)  %></h5>
+    </div>
+  <% end %>
+<% end %>

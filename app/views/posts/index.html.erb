@@ -4,6 +4,10 @@
   <h4><%= link_to "Create a New Post", new_user_post_path %></h4>
 <% end %>
 
+<% unless current_user == @user %>
+  <h4 class='push_right'><%= link_to "Send #{@user.username} a Message", new_user_message_path(@user) %></h4>
+<% end %>
+
 <% if @user.posts.any? %>
   <ul>
     <% @posts.each do |post| %>

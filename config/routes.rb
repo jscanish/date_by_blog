@@ -6,7 +6,10 @@ PostitTemplate::Application.routes.draw do
   resources :comments, only: [:create, :destroy]
   get "/home", to: 'users#index'
   get "/register", to: 'users#new'
+  resources :messages, only: [:show, :index, :destroy]
+  get "/sent_messages", to: 'messages#sent'
   resources :users, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :messages, only: [:new, :create]
     collection do
       get "search", to: "users#search"
       post "search_results", to: "users#search_results"

@@ -1,0 +1,19 @@
+<%= render 'shared/header', message: "#{current_user.username}'s messages", link: "See Sent Messages", path: sent_messages_path(current_user) %>
+
+<% if @messages.blank? %>
+  <h4>No Messages</h4>
+<% else %>
+  <% @messages.each do |message| %>
+    <div class='well', id="no_padding">
+      <h4>
+        <% if message.unread == true %>
+          <p class="unread">New Message</p>
+        <% end %>
+        <%= link_to message.title, message_path(message) %>
+      </h4>
+      <%= truncate(message.body, :length => 200, :separator => ' ') %>
+      <br/>
+      <h5>From <%= link_to message.sender.username, user_path(message.sender)  %></h5>
+    </div>
+  <% end %>
+<% end %>

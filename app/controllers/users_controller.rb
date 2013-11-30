@@ -52,11 +52,14 @@ class UsersController < ApplicationController
   end
 
   def results
-    params[:distance] == "All" ? distance = User.all : distance = User.near([current_user.latitude, current_user.longitude], params[:distance])
+    params[:distance] == "All" ? distance = User.all : distance =
+    User.near([current_user.latitude, current_user.longitude], params[:distance])
 
-    params[:gender] == "Both" ? distance_gender = distance : distance_gender = distance.select{|user| user.gender == params[:gender]}
+    params[:gender] == "Both" ? distance_gender = distance : distance_gender =
+    distance.select{|user| user.gender == params[:gender]}
 
-    distance_gender_age = distance_gender.select{ |user| user.age <= params[:max_age].to_i && user.age >= params[:min_age].to_i }
+    distance_gender_age = distance_gender.select{ |user| user.age <=
+    params[:max_age].to_i && user.age >= params[:min_age].to_i }
 
     distance_gender_age.delete(current_user)
     distance_gender_age

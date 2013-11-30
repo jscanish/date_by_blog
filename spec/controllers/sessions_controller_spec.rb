@@ -19,10 +19,6 @@ describe SessionsController do
       get :destroy
       expect(session[:user_id]).to eq(nil)
     end
-    it "sets the flash message" do
-      get :destroy
-      expect(flash[:notice]).to_not be_blank
-    end
   end
 
   describe "POST create" do

@@ -7,6 +7,9 @@
       <%= link_to "#{current_user.username}'s Profile", user_path(current_user) %>
     </li>
     <li>
+      <%= link_to "Messages(#{current_user.unread_messages.count})", messages_path(current_user) %>
+    </li>
+    <li>
       <%= link_to "Find Matches!", search_users_path %>
     </li>
   <% end %>
