@@ -1,8 +1,11 @@
 <%= render 'shared/header', message: "#{@message.title}", link: false, path: false %>
 
-<p><%= @message.body %></p>
-<p>
-  Sent by <%= link_to @message.sender.username, user_path(@message.sender) %>
-  <br/>
-  <small><%= link_to "Delete Message", message_path(@message), method: :delete %></small>
-</p>
+<div class='well no'>
+  <p><%= @message.body %></p>
+  <hr/>
+  <p>
+    Sent by <%= link_to @message.sender.username, user_path(@message.sender) %>
+    <br/>
+    <small><%= link_to "Delete Message", message_path(@message), method: :delete %></small>
+  </p>
+</div>
