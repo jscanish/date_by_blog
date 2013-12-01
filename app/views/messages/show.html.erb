@@ -6,6 +6,8 @@
   <p>
     Sent by <%= link_to @message.sender.username, user_path(@message.sender) %>
     <br/>
-    <small><%= link_to "Delete Message", message_path(@message), method: :delete %></small>
+    <% if @message.receiver == current_user %>
+      <small><%= link_to "Delete Message", message_path(@message), method: :delete %></small>
+    <% end %>
   </p>
 </div>

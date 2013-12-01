@@ -7,7 +7,6 @@ PostitTemplate::Application.routes.draw do
   get "/home", to: 'users#index'
   get "/register", to: 'users#new'
   resources :messages, only: [:show, :index, :destroy]
-  get "/sent_messages", to: 'messages#sent'
   resources :users, only: [:index, :new, :create, :show, :edit, :update] do
     resources :messages, only: [:new, :create]
     collection do

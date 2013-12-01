@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = current_user.messages
+    @sent_messages = current_user.sent_messages.sort_by(&:created_at).reverse
   end
 
   def show
@@ -33,10 +34,6 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @message.delete if @message.receiver_id == current_user.id
     redirect_to messages_path
-  end
-
-  def sent
-    @messages = current_user.sent_messages.sort_by(&:created_at).reverse
   end
 
 

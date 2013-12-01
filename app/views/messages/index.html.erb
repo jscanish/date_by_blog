@@ -1,19 +1,45 @@
-<%= render 'shared/header', message: "#{current_user.username}'s messages", link: "See Sent Messages", path: sent_messages_path(current_user) %>
+<%= render 'shared/header', message: "#{current_user.username}'s messages", link: false, path: false %>
 
-<% if @messages.blank? %>
-  <h4>No Messages</h4>
-<% else %>
-  <% @messages.each do |message| %>
-    <div class='well', id="no_padding">
-      <h4>
-        <% if message.unread == true %>
-          <p class="unread">New Message</p>
-        <% end %>
-        <%= link_to message.title, message_path(message) %>
-      </h4>
-      <%= truncate(message.body, :length => 200, :separator => ' ') %>
-      <br/>
-      <h5>From <%= link_to message.sender.username, user_path(message.sender)  %></h5>
-    </div>
-  <% end %>
-<% end %>
+<ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a data-toggle="tab" href="#messages">Messages</a></li>
+    <li><a data-toggle="tab" href="#sent_messages">Sent Messages</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="messages">
+    <% if @messages.blank? %>
+      <h4>No Messages</h4>
+    <% else %>
+      <% @messages.each do |message| %>
+        <div class='well', id="no_padding">
+          <h4>
+            <% if message.unread == true %>
+              <p class="unread">New Message</p>
+            <% end %>
+            <%= link_to message.title, message_path(message) %>
+          </h4>
+          <%= truncate(message.body, :length => 200, :separator => ' ') %>
+          <br/>
+          <h5>From <%= link_to message.sender.username, user_path(message.sender)  %></h5>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="tab-pane" id="sent_messages">
+    <% if @sent_messages.blank? %>
+      <h4>No Messages</h4>
+    <% else %>
+      <% @sent_messages.each do |message| %>
+        <div class='well', id="no_padding">
+          <h4><%= message.title %></h4>
+          <%= truncate(message.body, :length => 200, :separator => ' ') %>
+          <br/>
+          <h5>To <%= link_to message.receiver.username, user_path(message.receiver)  %></h5>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
