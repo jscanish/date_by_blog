@@ -14,7 +14,7 @@ PostitTemplate::Application.routes.draw do
       post "search_results", to: "users#search_results"
     end
     resources :questions, only: [:edit, :update]
-    resources :posts do
+    resources :posts, except: [:index] do
       resources :comments, only: [:create, :destroy]
     end
   end

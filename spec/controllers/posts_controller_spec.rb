@@ -4,27 +4,6 @@ describe PostsController do
   before(:each) do
     User.any_instance.stub(:geocode).and_return([1,1])
   end
-  describe "GET index" do
-    before do
-      @user = Fabricate(:user, address: "New York")
-      session[:user_id] = @user.id
-    end
-    it "sets @user variable" do
-      get :index, user_id: @user.id
-      expect(assigns(:user)).to eq(@user)
-    end
-    it "sets @osts variable" do
-      post1 = Post.create(user: @user, title: 'hi', body: 'hello' )
-      post2 = Post.create(user: @user, title: 'no', body: 'yes')
-      get :index, user_id: @user.id
-      expect(assigns(:posts)).to match_array([post1, post2])
-    end
-    it "requires logged in user" do
-      session[:user_id] = nil
-      get :index, user_id: @user.id
-      expect(response).to redirect_to login_path
-    end
-  end
 
   describe "GET show" do
     before do
@@ -185,9 +164,9 @@ describe PostsController do
       delete :destroy, user_id: @user.id, id: @post.id
       expect(flash[:notice]).to_not be_blank
     end
-    it "redirects to user posts path" do
+    it "redirects to user path" do
       delete :destroy, user_id: @user.id, id: @post.id
-      expect(response).to redirect_to user_posts_path(@user)
+      expect(response).to redirect_to user_path(@user)
     end
   end
 end

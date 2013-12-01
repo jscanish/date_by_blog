@@ -6,6 +6,11 @@
   </p>
 </div>
 
+
+<% if @post.user == current_user %>
+  <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete %>
+<% end %>
+
 <hr/>
 <%= form_for [@user, @post, @comment] do |f| %>
   <%= f.label "New Comment", id: "comment_form" %>

@@ -1,4 +1,4 @@
-<%= render 'shared/header', message: "#{@user.username}'s Profile", link: "See #{@user.username}'s Blog", path: user_posts_path(@user, @posts) %>
+<%= render 'shared/header', message: "#{@user.username}'s Profile", link: false, path: false %>
 
 <div>
   <h4>
@@ -11,26 +11,60 @@
 </div>
 <br/>
 
-<div class='well'>
-  <h4>Self Summary</h4>
-  <%= @user.set_of_questions.self_summary %>
+
+<ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a data-toggle="tab" href="#questions"><%= @user.username %>'s Profile Questions</a></li>
+    <li><a data-toggle="tab" href="#blog"><%= @user.username %>'s Blog</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="questions">
+    <div class='well'>
+      <h4>Self Summary</h4>
+      <%= @user.set_of_questions.self_summary %>
+    </div>
+
+    <div class='well'>
+      <h4>Life Story</h4>
+      <%= @user.set_of_questions.life_story %>
+    </div>
+
+    <div class='well'>
+      <h4>Favorite Things</h4>
+      <%= @user.set_of_questions.favorite_things %>
+    </div>
+
+    <div class='well'>
+      <h4>Looking For</h4>
+      <%= @user.set_of_questions.looking_for %>
+    </div>
+
+    <% if current_user == @user %>
+      <%= button_to "Answer Questions!", edit_user_path(@user), method: :get, class: 'btn' %>
+    <% end %>
+  </div>
+
+
+  <div class="tab-pane" id="blog">
+    <% if current_user == @user %>
+      <h4 style="text-align:center"><%= link_to "Create a New Post", new_user_post_path(current_user) %></h4>
+    <% end %>
+
+    <% if @user.posts.any? %>
+      <ul>
+        <% @posts.each do |post| %>
+          <li class='list_space'>
+            <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
+            <%= truncate(post.body, :length => 1500, :separator => ' ') %>
+            <br/>
+            <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+            <hr/>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h4 style="text-align:center"><%= @user.username %> hasn't written anything yet</h4>
+    <% end %>
+  </div>
 </div>
 
-<div class='well'>
-  <h4>Life Story</h4>
-  <%= @user.set_of_questions.life_story %>
-</div>
-
-<div class='well'>
-  <h4>Favorite Things</h4>
-  <%= @user.set_of_questions.favorite_things %>
-</div>
-
-<div class='well'>
-  <h4>Looking For</h4>
-  <%= @user.set_of_questions.looking_for %>
-</div>
-
-<% if current_user == @user %>
-  <%= button_to "Answer Questions!", edit_user_path(@user), method: :get, class: 'btn' %>
-<% end %>
