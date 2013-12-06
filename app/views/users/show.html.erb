@@ -21,22 +21,22 @@
   <div class="tab-pane active" id="questions">
     <div class='well'>
       <h4>Self Summary</h4>
-      <%= @user.set_of_questions.self_summary %>
+      <%= simple_format h(@user.set_of_questions.self_summary) %>
     </div>
 
     <div class='well'>
       <h4>Life Story</h4>
-      <%= @user.set_of_questions.life_story %>
+      <%= simple_format h(@user.set_of_questions.life_story) %>
     </div>
 
     <div class='well'>
       <h4>Favorite Things</h4>
-      <%= @user.set_of_questions.favorite_things %>
+      <%= simple_format h(@user.set_of_questions.favorite_things) %>
     </div>
 
     <div class='well'>
       <h4>Looking For</h4>
-      <%= @user.set_of_questions.looking_for %>
+      <%= simple_format h(@user.set_of_questions.looking_for) %>
     </div>
 
     <% if current_user == @user %>
