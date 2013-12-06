@@ -2,13 +2,14 @@
 
 <div>
   <p>
-    <%= @post.body %>
+    <%= simple_format h(@post.body) %>
   </p>
 </div>
 
 
 <% if @post.user == current_user %>
-  <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete %>
+  <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete %> |
+  <%= link_to "Edit Post", edit_user_post_path(@user, @post) %>
 <% end %>
 
 <hr/>

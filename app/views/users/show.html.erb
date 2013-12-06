@@ -55,7 +55,7 @@
         <% @posts.each do |post| %>
           <li class='list_space'>
             <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
-            <%= truncate(post.body, :length => 1500, :separator => ' ') %>
+            <%= simple_format h(truncate(post.body, :length => 1500, :separator => ' ')) %>
             <br/>
             <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
             <hr/>
@@ -63,7 +63,7 @@
         <% end %>
       </ul>
     <% else %>
-      <h4 style="text-align:center"><%= @user.username %> hasn't written anything yet</h4>
+      <h4 style="text-align"><%= @user.username %> hasn't written anything yet</h4>
     <% end %>
   </div>
 </div>
