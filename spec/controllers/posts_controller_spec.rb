@@ -116,11 +116,11 @@ describe PostsController do
         @post.reload
         expect(flash[:notice]).to_not be_blank
       end
-      it "redirects to the user posts path" do
+      it "redirects to the user path" do
         @attr = { title: "new title" }
         put :update, user_id: @user.id, id: @post.id, post: @attr
         @post.reload
-        expect(response).to redirect_to user_posts_path(@user, @post)
+        expect(response).to redirect_to user_path(@user)
       end
     end
 
