@@ -1,7 +1,10 @@
-<%= render 'shared/header', message: "Register or Log In", link: false, path: false %>
 
-<%= link_to "Register", register_path, class: "btn btn-large" %>
-<%= link_to "Log In", login_path, class: "btn btn-large btn-primary" %>
-
-
+<div style="text-align:center">
+  <h3>Register or Log In!</h3>
+  <hr/>
+  <div style="padding-left:55px">
+    <%= link_to "Register", register_path, class: "btn btn-large" %>
+    <%= link_to "Log In", login_path, class: "btn btn-large btn-primary" %>
+  </div>
+</div>
 
