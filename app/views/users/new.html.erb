@@ -1,3 +1,4 @@
+
 <%= render 'shared/errors', obj: @user %>
 
 <%= render 'shared/header', message: "Register A New User", link: false, path: false %>
@@ -15,5 +16,5 @@
   <%= f.text_field :address %>
   <%= f.label :age, "Age" %>
   <%= f.select :age, options_for_select(18..45) %>
-  <div><input type="submit" class="btn btn-primary" value="Create A New User" ></div>
+  <div><input type="submit" class="btn btn-primary" value="Sign Up!" ></div>
 <% end %>

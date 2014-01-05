@@ -23,6 +23,10 @@ textarea {
   width: 60%;
 }
 
+.username {
+  text-align: center;
+}
+
 .unread {
   color: green;
   font-size: 90%;
@@ -32,6 +36,15 @@ textarea {
 #no_padding{
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.float_left {
+  float: left;
+  padding-right: 40px;
+}
+
+.float_right {
+  float: right;
 }
 
 .push_right {
