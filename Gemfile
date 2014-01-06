@@ -11,6 +11,11 @@ gem 'bcrypt-ruby', '= 3.0.1'
 gem 'fabrication'
 gem 'faker'
 gem 'geocoder'
+gem 'paperclip', '~> 3.0'
+gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'
+
 
 group :doc do
   gem 'sdoc', require: false

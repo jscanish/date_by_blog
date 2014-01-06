@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :messages, -> {order('created_at DESC')}, class_name: "Message", foreign_key: :receiver_id
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
   has_many :posts, -> {order('created_at DESC')}
+  has_many :pictures, -> {order('created_at DESC')}
+
   validates :password, presence: true, length: {minimum: 4}
   validates :username, presence: true, uniqueness: true
   validates :address, presence: true

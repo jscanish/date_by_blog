@@ -1,0 +1,12 @@
+<%= render 'shared/errors', obj: @picture %>
+<%= render 'shared/header', message: "Add a New Picture", link: false, path: false %>
+
+<%= form_for @picture do |f| %>
+  <%= f.label "Select Picture" %>
+  <%= f.file_field :image %>
+  <%= f.label "Title" %>
+  <%= f.text_field :title %>
+  <%= f.label "description" %>
+  <%= f.text_area :description, rows: 8 %>
+  <%= button_to "Add Picture", pictures_path(@picture), method: :post, class: 'btn btn-primary' %>
+<% end %>

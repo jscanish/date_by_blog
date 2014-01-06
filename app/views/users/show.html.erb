@@ -21,6 +21,7 @@
 <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a data-toggle="tab" href="#questions"><%= @user.username %>'s Profile Questions</a></li>
     <li><a data-toggle="tab" href="#blog"><%= @user.username %>'s Blog</a></li>
+    <li><a data-toggle="tab" href="#pictures"><%= @user.username %>'s Pictures</a></li>
 </ul>
 
 <div class="tab-content">
@@ -72,5 +73,27 @@
       <h4 style="text-align"><%= @user.username %> hasn't written anything yet</h4>
     <% end %>
   </div>
+
+  <div class="tab-pane" id="pictures">
+    <% if current_user == @user %>
+      <h4 style="text-align:center"><%= link_to "Add a Picture", new_picture_path(current_user) %></h4>
+    <% end %>
+
+
+    <ul>
+      <% @user.pictures.each do |picture| %>
+        <li class="pictures">
+          <div class="well"><%= link_to image_tag(src="#{picture.image_url(:small)}"), picture_path(picture) %></div>
+        </li>
+      <% end %>
+    </ul>
+
+
+
+  </div>
 </div>
+
+
+
+
 

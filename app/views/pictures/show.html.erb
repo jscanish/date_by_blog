@@ -1,0 +1,9 @@
+<div class="well", style="text-align:center">
+
+<h3><%= @picture.title %></h3>
+
+<div><%= image_tag(src="#{@picture.image_url(:large)}") %></div>
+<br/>
+<p><%= @picture.description %></p>
+
+</div>
