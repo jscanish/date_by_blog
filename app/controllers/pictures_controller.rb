@@ -11,7 +11,6 @@ class PicturesController < ApplicationController
 
     if @picture.save
       @user.pictures << @picture
-
       flash[:notice] = "Picture Added!"
       redirect_to user_path(@user)
     else
@@ -27,6 +26,6 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:title, :description, :image, :large_image)
+    params.require(:picture).permit(:title, :description, :image)
   end
 end
