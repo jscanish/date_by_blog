@@ -64,7 +64,10 @@
             <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
             <%= simple_format h(truncate(post.body, :length => 1500, :separator => ' ')) %>
             <br/>
-            <small>Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+            <small>
+              Posted <%= time_ago_in_words(post.created_at) %> ago <br/>
+              <strong><%= post.comments.count %> comments</strong>
+            </small>
             <hr/>
           </li>
         <% end %>
@@ -78,7 +81,6 @@
     <% if current_user == @user %>
       <h4 style="text-align:center"><%= link_to "Add a Picture", new_picture_path(current_user) %></h4>
     <% end %>
-
     <ul>
       <% @user.pictures.each do |picture| %>
         <li class="pictures">
@@ -86,7 +88,6 @@
         </li>
       <% end %>
     </ul>
-
   </div>
 </div>
 
