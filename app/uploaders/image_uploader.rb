@@ -9,6 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [765, 475]
   end
 
+
   # storage :file
 
   # def store_dir
