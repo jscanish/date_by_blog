@@ -22,6 +22,17 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id])
   end
 
+  def destroy
+    @picture = Picture.find(params[:id])
+    if logged_in? && @picture.user == current_user
+      @picture.delete
+      redirect_to user_path(current_user)
+    else
+      redirect_to login_path
+      flash[:notice] = "You can't do that!"
+    end
+  end
+
 
   private
 
