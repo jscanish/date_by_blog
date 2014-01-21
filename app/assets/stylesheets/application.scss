@@ -14,6 +14,25 @@
 
  @import "bootstrap";
 
+
+li > a {
+  color: #000080;
+}
+
+.link_to {
+  color: #000080;
+  text-decoration: none !important;
+}
+
+.well {
+  background-color: #e8e8e8;
+  padding: 10px;
+}
+
+ul > li > div {
+  padding: 10px !important;
+}
+
 div.span9 {
   padding: 0 0 20px 20px !important;
   margin: 0 !important;

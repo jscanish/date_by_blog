@@ -11,7 +11,7 @@
     <%= @user.gender %> / <%= @user.age %> / <%= @user.address %>
     <br/>
     <% unless @user == current_user %>
-      <%= link_to "Send #{@user.username} a Message", new_user_message_path(@user) %>
+      <%= link_to "Send #{@user.username} a Message", new_user_message_path(@user), class: "link_to" %>
     <% end %>
   </h4>
 </div>
@@ -54,14 +54,14 @@
 
   <div class="tab-pane" id="blog">
     <% if current_user == @user %>
-      <h4 style="text-align:center"><%= link_to "Create a New Post", new_user_post_path(current_user) %></h4>
+      <h4 style="text-align:center"><%= link_to "Create a New Post", new_user_post_path(current_user), class: "link_to" %></h4>
     <% end %>
 
     <% if @user.posts.any? %>
       <ul>
         <% @posts.each do |post| %>
           <li class='list_space'>
-            <h4><%= link_to post.title, user_post_path(@user, post) %></h4>
+            <h4><%= link_to post.title, user_post_path(@user, post), class: "link_to" %></h4>
             <%= simple_format h(truncate(post.body, :length => 1500, :separator => ' ')) %>
             <br/>
             <small>
@@ -79,7 +79,7 @@
 
   <div class="tab-pane" id="pictures">
     <% if current_user == @user %>
-      <h4 style="text-align:center"><%= link_to "Add a Picture", new_picture_path(current_user) %></h4>
+      <h4 style="text-align:center"><%= link_to "Add a Picture", new_picture_path(current_user), class: "link_to" %></h4>
     <% end %>
     <ul>
       <% @user.pictures.each do |picture| %>

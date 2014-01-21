@@ -8,8 +8,8 @@
 
 
 <% if @post.user == current_user %>
-  <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete %> |
-  <%= link_to "Edit Post", edit_user_post_path(@user, @post) %>
+  <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete, class: "link_to" %> |
+  <%= link_to "Edit Post", edit_user_post_path(@user, @post), class: "link_to" %>
 <% end %>
 
 <hr/>
@@ -31,7 +31,7 @@
     <br/>
     <small>created <%= time_ago_in_words(comment.created_at) %> ago</small>
     <% if logged_in? && current_user == comment.user || current_user == @post.user %>
-    <small><%= link_to 'Delete', user_post_comment_path(@user, @post, comment), method: :delete %></small>
+    <small><%= link_to 'Delete', user_post_comment_path(@user, @post, comment), method: :delete, class: 'link_to' %></small>
     <% end %>
   </div>
   <hr/>

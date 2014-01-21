@@ -16,7 +16,7 @@
             <% if message.unread == true %>
               <p class="unread">New Message</p>
             <% end %>
-            <%= link_to message.title, message_path(message) %>
+            <%= link_to message.title, message_path(message), class: "link_to" %>
           </h4>
           <%= truncate(message.body, :length => 200, :separator => ' ') %>
           <br/>
