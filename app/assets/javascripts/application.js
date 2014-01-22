@@ -17,8 +17,9 @@
 //= require bootstrap
 
 
-
-
+$(document).ready(function() {
+   $('.login').slideDown(600);
+ });
 
 
 

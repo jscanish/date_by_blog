@@ -1,11 +1,15 @@
-<%= render 'shared/header', message: "Login", link: false, path: false %>
-
-<%= form_tag '/login', method: :post do %>
-  <%= label_tag :username, "Username" %>
-  <%= text_field_tag :username %>
-  <%= label_tag :password, "Password" %>
-  <%= password_field_tag :password %>
-  <br/>
-  <button class="btn btn-primary">Login</button>
-
-<% end %>
+<div class='login'>
+  <%= form_tag '/login', method: :post do %>
+    <span class="icons">
+      <i class="icon-user"></i>
+    </span>
+    <%= text_field_tag :username, nil, placeholder: 'Username' %>
+    <br/>
+    <span class="icons">
+      <i class="icon-pencil"></i>
+    </span>
+    <%= password_field_tag :password, nil, placeholder: 'Password' %>
+    <br/>
+    <button class="btn btn-primary">Login</button>
+  <% end %>
+</div>

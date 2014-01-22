@@ -24,6 +24,20 @@ li > a {
   text-decoration: none !important;
 }
 
+.login {
+  position:absolute;
+     width:300px;
+     height:150px;
+     top:55%;
+     left:45%;
+     margin:-170px 0 0 -100px;
+     background:#c0c0c0;
+     padding: 30px;
+     border: 2px solid;
+     border-radius: 25px;
+     display: none;
+}
+
 .well {
   background-color: #e8e8e8;
   padding: 10px;
