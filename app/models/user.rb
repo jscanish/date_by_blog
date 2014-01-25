@@ -20,4 +20,17 @@ class User < ActiveRecord::Base
   def unread_messages
     self.messages.where(unread: true)
   end
+
+  def profile_picture
+    if self.avatar && picture_exists?
+      picture = Picture.where(image: "#{self.avatar}").first
+      ActionController::Base.helpers.image_tag(src="#{picture.image_url(:avatar)}")
+    else
+      ActionController::Base.helpers.image_tag("default_profile.jpg")
+    end
+  end
+
+  def picture_exists?
+    Picture.all.include?(Picture.where(image: "#{self.avatar}").first)
+  end
 end

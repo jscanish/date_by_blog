@@ -3,6 +3,7 @@ PostitTemplate::Application.routes.draw do
   post "/login", to: 'sessions#create'
   get "/logout", to: 'sessions#destroy'
 
+  post "/avatar/:id", to: 'pictures#set_avatar', as: :avatar
   resources :pictures, only: [:new, :create, :show, :destroy]
   resources :comments, only: [:create, :destroy]
   get "/home", to: 'users#index'

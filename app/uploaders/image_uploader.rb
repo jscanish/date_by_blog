@@ -9,6 +9,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [765, 475]
   end
 
+  version :avatar do
+    process :resize_to_fill => [160, 160]
+  end
 
   # storage :file
 
