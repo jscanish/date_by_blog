@@ -2,6 +2,6 @@ A dating website founded on the idea that each member keeps a blog. Features mos
 
 What better way to get to know someone than by looking at what they write and think the most about?
 
-I still have a lot of work to do, and I frequently change things as I continue to experiment, but the app is deployed to http://dry-plateau-4301.herokuapp.com/home
+I still have a lot of work to do, and I frequently change things as I continue to experiment, but the app is deployed to http://dry-plateau-4301.herokuapp.com
 
 
