@@ -1,4 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
+  storage :file
   include CarrierWave::MiniMagick
 
   version :small do
@@ -13,7 +14,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [160, 160]
   end
 
-  # storage :file
 
   # def store_dir
   #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
