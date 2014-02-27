@@ -21,5 +21,7 @@ $(document).ready(function() {
    $('.login').slideDown(600);
  });
 
-
+$(document).ready(function() {
+   $('.register').slideDown(600);
+ });
 

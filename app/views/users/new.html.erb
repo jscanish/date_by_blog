@@ -1,8 +1,7 @@
 <%= render 'shared/errors', obj: @user %>
 
-<%= render 'shared/header', message: "Register A New User", link: false, path: false %>
-
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { class: "register" } do |f| %>
+  <div><h4>Register a New User</h4></div>
   <%= f.label :username, "Username" %>
   <%= f.text_field :username %>
   <%= f.label :email, "Email" %>
@@ -11,7 +10,7 @@
   <%= f.password_field :password %>
   <%= f.label :gender, "Gender (we use this for matching)" %>
   <%= f.select :gender, options_for_select(["Male", "Female"])  %>
-  <%= f.label :address, "Address" %>
+  <%= f.label :address, "City" %>
   <%= f.text_field :address %>
   <%= f.label :age, "Age" %>
   <%= f.select :age, options_for_select(18..45) %>

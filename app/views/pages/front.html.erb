@@ -1,9 +1,28 @@
-<div style="text-align:center">
-  <h3>Register or Log In!</h3>
-  <hr/>
-  <div style="padding-left:55px">
-    <%= link_to "Register", register_path, class: "btn btn-large" %>
-    <%= link_to "Log In", login_path, class: "btn btn-large btn-primary" %>
-  </div>
+<div class="front_text">
+  <p>
+    Welcome to Date By Blog!
+  </p>
+  <p>
+    Most dating websites match users based on answers they provide to simple questions. This site is different. We allow users to keep a blog, writing about whatever they want. What better way to get to know someone than to see what they think and write   about on a daily basis?
+  </p>
+  <p>
+    Sign up now, answer some simple profile questions, and start blogging today!
+  </p>
+</div>
+
+<div class="front">
+  <%= link_to register_path, class: "btn btn-large" do %>
+  <span class="icons">
+    <i class="icon-user"></i>
+    Register
+  </span>
+  <% end %>
+
+  <%= link_to login_path, class: "btn btn-large btn-primary" do %>
+    <span class="icons">
+      <i class="icon-pencil"></i>
+      Sign In
+    </span>
+  <% end %>
 </div>
 
